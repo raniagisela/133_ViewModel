@@ -337,7 +337,6 @@ fun TextHasil(emailnya:String,alamatnya:String,jenisnya:String,statusnya:String)
         )
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

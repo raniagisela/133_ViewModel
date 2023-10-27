@@ -6,7 +6,7 @@ import com.example.latihan_4.R
             R.string.laki,
             R.string.wanita
         )
-        val status = listOf(
+        val stts = listOf(
             R.string.blmnikah,
             R.string.menikah
         )
