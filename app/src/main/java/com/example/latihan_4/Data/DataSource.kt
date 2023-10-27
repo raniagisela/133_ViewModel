@@ -10,4 +10,4 @@ import com.example.latihan_4.R
             R.string.blmnikah,
             R.string.menikah
         )
-}
+    }
