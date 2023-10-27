@@ -71,6 +71,7 @@ class MainActivity : ComponentActivity() {
 fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
     var textNama by remember { mutableStateOf("") }
     var textTlp by remember { mutableStateOf("") }
+    var textEmail by remember { mutableStateOf("") }
     var textAlmt by remember { mutableStateOf("") }
 
 
@@ -101,6 +102,16 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
         }
     )
     OutlinedTextField(
+        value = textEmail,
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text(text = "Email")},
+        onValueChange = {
+            textEmail = it
+        }
+    )
+    OutlinedTextField(
         value = textAlmt,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
@@ -116,7 +127,7 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
     Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                cobaViewModel.BacaData(textNama, textTlp, textAlmt, dataForm.sex)
+                cobaViewModel.BacaData(textNama, textTlp, textEmail, textAlmt, dataForm.sex)
             }
         ) {
             Text(
@@ -128,6 +139,7 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
     TextHasil(
         namanya = cobaViewModel.namaUsr,
         telponnya = cobaViewModel.noTlp,
+        emailnya = cobaViewModel.emailUsr,
         alamatnya = cobaViewModel.AlmtUsr,
         jenisnya = cobaViewModel.jenisKl
     )
@@ -156,6 +168,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
 
     var textNama by remember { mutableStateOf("") }
     var textTlp by remember { mutableStateOf("") }
+    var textEmail by remember { mutableStateOf("") }
     var textAlmt by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -185,6 +198,17 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         }
     )
     OutlinedTextField(
+        value = textEmail,
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text(text = "Email")},
+        onValueChange = {
+            textEmail = it
+        }
+    )
+    OutlinedTextField(
         value = textAlmt,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
@@ -200,7 +224,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                cobaViewModel.BacaData(textNama, textTlp, textAlmt, dataForm.sex)
+                cobaViewModel.BacaData(textNama, textTlp, textEmail, textAlmt, dataForm.sex)
             }
         ) {
             Text(
@@ -212,6 +236,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         TextHasil(
             namanya = cobaViewModel.namaUsr,
             telponnya = cobaViewModel.noTlp,
+            emailnya = cobaViewModel.emailUsr,
             alamatnya = cobaViewModel.AlmtUsr,
             jenisnya = cobaViewModel.jenisKl
         )
@@ -249,7 +274,7 @@ fun SelectJK(
 }
 
 @Composable
-fun TextHasil(namanya:String,telponnya:String,alamatnya:String,jenisnya:String){
+fun TextHasil(namanya:String,telponnya:String,emailnya:String,alamatnya:String,jenisnya:String){
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -264,6 +289,11 @@ fun TextHasil(namanya:String,telponnya:String,alamatnya:String,jenisnya:String){
         )
         Text(
             text = "Telepon : " + telponnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+        Text(
+            text = "Email : " + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
