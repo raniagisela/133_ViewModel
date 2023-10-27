@@ -111,19 +111,19 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
             textEmail = it
         }
     )
+    SelectJK(
+        options = jenis.map { id -> context.resources.getString(id) },
+        onSelectionChanged = { cobaViewModel.setJenisK(it) })
     OutlinedTextField(
         value = textAlmt,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Alamat Lengkap")},
+        label = { Text(text = "Alamat")},
         onValueChange = {
             textAlmt = it
         }
     )
-    SelectJK(
-        options = jenis.map { id -> context.resources.getString(id) },
-        onSelectionChanged = { cobaViewModel.setJenisK(it) })
     Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
@@ -181,7 +181,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Nama Lengkap")},
+        label = { Text(text = "Nama Lengkap") },
         onValueChange = {
             textNama = it
         }
@@ -192,7 +192,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Telpon")},
+        label = { Text(text = "Telpon") },
         onValueChange = {
             textTlp = it
         }
@@ -203,24 +203,25 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Email")},
+        label = { Text(text = "Email") },
         onValueChange = {
             textEmail = it
         }
     )
+    SelectJK(
+        options = jenis.map { id -> context.resources.getString(id) },
+        onSelectionChanged = { cobaViewModel.setJenisK(it) })
+
     OutlinedTextField(
         value = textAlmt,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Alamat Lengkap")},
+        label = { Text(text = "Alamat")},
         onValueChange = {
             textAlmt = it
         }
     )
-    SelectJK(
-        options = jenis.map { id -> context.resources.getString(id)},
-        onSelectionChanged = { cobaViewModel.setJenisK(it)})
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
