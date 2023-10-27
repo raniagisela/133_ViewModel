@@ -1,4 +1,5 @@
 package com.example.latihan_4.Data
+import android.net.http.UrlRequest.Status
 import com.example.latihan_4.R
 
     object DataSource {
@@ -6,7 +7,7 @@ import com.example.latihan_4.R
             R.string.laki,
             R.string.wanita
         )
-        val stts = listOf(
+        val Sttus = listOf(
             R.string.blmnikah,
             R.string.menikah
         )

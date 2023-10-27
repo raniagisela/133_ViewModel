@@ -40,12 +40,14 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.latihan_4.Data.DataForm
+import com.example.latihan_4.Data.DataSource.Sttus
 import com.example.latihan_4.Data.DataSource.jenis
 import com.example.latihan_4.ui.theme.Latihan_4Theme
 
@@ -114,9 +116,9 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
         onSelectionChanged = { cobaViewModel.setJenisK(it) })
-    SelectStts(
-        options = jenis.map { id -> context.resources.getString(id) },
-        onSelectionChanged = { cobaViewModel.setStatus(it) })
+    SelectSttus(
+        options = Sttus.map { id -> context.resources.getString(id) },
+        onSelectionChanged = { cobaViewModel.setSttus(it) })
     OutlinedTextField(
         value = textAlmt,
         singleLine = true,
@@ -138,12 +140,12 @@ fun TampilText(cobaViewModel: CobaViewModel = viewModel()) {
                 fontSize = 16.sp
             )
         }
-    Spacer(modifier = Modifier.height(100.dp))
+    Spacer(modifier = Modifier.height(2.dp))
     TextHasil(
         emailnya = cobaViewModel.emailUsr,
         alamatnya = cobaViewModel.AlmtUsr,
         jenisnya = cobaViewModel.jenisKl,
-        statusnya = cobaViewModel.Status
+        statusnya = cobaViewModel.status
     )
 }
 
@@ -177,6 +179,13 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
     val dataForm: DataForm
     val uiState by cobaViewModel.uiState.collectAsState()
     dataForm = uiState
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(text = "Register", fontSize = 20.sp, fontWeight = FontWeight.Bold,)
+    }
+    Text(text = "Create Your Account", fontSize = 30.sp, fontWeight = FontWeight.Bold,)
 
     OutlinedTextField(
         value = textNama,
@@ -213,9 +222,9 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
         onSelectionChanged = { cobaViewModel.setJenisK(it) })
-    SelectStts(
-        options = jenis.map { id -> context.resources.getString(id) },
-        onSelectionChanged = { cobaViewModel.setStatus(it) })
+    SelectSttus(
+        options = Sttus.map { id -> context.resources.getString(id) },
+        onSelectionChanged = { cobaViewModel.setSttus(it) })
     OutlinedTextField(
         value = textAlmt,
         singleLine = true,
@@ -237,12 +246,12 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()) {
             fontSize = 16.sp
         )
     }
-    Spacer(modifier = Modifier.height(100.dp))
+    Spacer(modifier = Modifier.height(2.dp))
     TextHasil(
         emailnya = cobaViewModel.emailUsr,
         alamatnya = cobaViewModel.AlmtUsr,
         jenisnya = cobaViewModel.jenisKl,
-        statusnya = cobaViewModel.Status
+        statusnya = cobaViewModel.status
     )
 }
 
@@ -251,8 +260,8 @@ fun SelectJK(
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {}) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
-
-    Column(modifier = Modifier.padding(16.dp)) {
+    Text(text = "Jenis Kelamin: ", fontSize = 15.sp,)
+    Row(modifier = Modifier.padding(16.dp)) {
         options.forEach { item ->
             Row(
                 modifier = Modifier.selectable(
@@ -277,12 +286,12 @@ fun SelectJK(
     }
 }
 @Composable
-fun SelectStts(
+fun SelectSttus(
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {}) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
-
-    Column(modifier = Modifier.padding(16.dp)) {
+    Text(text = "Status: ", fontSize = 15.sp,)
+    Row(modifier = Modifier.padding(16.dp)) {
         options.forEach { item ->
             Row(
                 modifier = Modifier.selectable(
